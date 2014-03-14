@@ -150,7 +150,7 @@ class PrestoDialect(default.DefaultDialect):
     def reflecttable(self, connection, table, include_columns=None, exclude_columns=None):
         exclude_columns = exclude_columns or []
         try:
-            rows = connection.execute('SHOW COLUMNS FROM "{}"'.format(table))
+            rows = connection.execute('SHOW COLUMNS FROM {}'.format(table))
         except presto.DatabaseError as e:
             # Normally SQLAlchemy should wrap this exception in sqlalchemy.exc.DatabaseError, which
             # it successfully does in the Hive version. The difference with Presto is that this
